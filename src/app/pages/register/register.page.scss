@@ -1,0 +1,46 @@
+.register_content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    .nombre, .contrasena, .cedula, .contacto{
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        
+        span{
+            margin: 5px 0 5px 0;
+        }
+
+        input{
+            width: 100%;
+            height: 45px;
+            border-radius: 10px;
+            background-color: white;
+            color: royalblue;
+            font-size: 9pt;
+        }
+    }
+
+    .content_button{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 20px 0px 20px 0px;
+
+        button{
+            width: 250px;
+            height: 50px;
+            color: white;
+            background-color: royalblue;
+            border-radius: 10px;
+        }
+        button:hover{
+            background-color: blue;
+        }
+    }
+}

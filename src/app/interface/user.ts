@@ -5,11 +5,4 @@ export interface Users_List {
 
 export interface User_Login {
     message: string;
-    usuario: {
-        ID: number,
-        NOMBRE: string,
-        CEDULA: string,
-        CONTACTO: string,
-        ISVALID: string
-    }[];
 }
