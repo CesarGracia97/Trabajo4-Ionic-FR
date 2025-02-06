@@ -1,0 +1,7 @@
+{
+  "name": "LoginContactos",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
