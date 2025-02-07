@@ -1,23 +1,22 @@
 <ion-content>
   <div class="login-container">
-    <form>
       <div class="content_imagen">
         <img src="assets/satelite.svg" alt="Pagina de Contactos-usuarios">
       </div>
       <div class="content_inputs">
-        <input type="text" placeholder="Ingrese su correo" [(ngModel)]="correo" name="correo"  />
+        <input type="text" placeholder="Ingrese su correo" [(ngModel)]="correo" name="correo" />
         <input type="password" placeholder="Ingrese su contraseña" [(ngModel)]="contrasena"  name="contrasena"/>
       </div>
       <div class="links">
-        <a href="#">Crear nueva cuenta</a>
-        <a href="#">Recordar contraseña</a>
+        <ion-button (click)="irPagina('register')" class="btn_registro">Crear cuenta</ion-button>
+        <ion-button (click)="recuperarContrasena()" class="btn_recovery">Recordar contraseña</ion-button>
       </div>
-    </form>
+
     <div class="content_button">
-      <button (click)="Login()">Iniciar Sesion</button>
+      <button (click)="Login()" class="btn_iniciar">Iniciar Sesion</button>
     </div>
   </div>
-
+  
   <div class="modal-overlay" *ngIf="response">
     <div class="modal-container">
       <p>{{ txt_response }}</p>

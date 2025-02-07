@@ -1,0 +1,38 @@
+<ion-content>
+  <div class="register_content">
+    <div class="content_imagen">
+      <img src="assets/man-user.svg" alt="Pagina de Contactos-usuarios">
+    </div>
+    <form>
+      <div class="nombre">
+        <span>Nombre</span>
+        <input type="text" [(ngModel)]="nombre" name="nombre" />
+      </div>
+      <div class="nombre">
+        <span>Correo</span>
+        <input type="text" [(ngModel)]="correo" name="correo" />
+      </div>
+      <div class="contrasena">
+        <span>Contraseña</span>
+        <input type="password" [(ngModel)]="contrasena" name="contrasena" /> 
+      </div>
+      <div class="cedula">
+        <span>Cedula (DNI)</span>
+        <input type="number" [(ngModel)]="cedula" name="cedula" />
+      </div>
+      <div class="contacto">
+        <span>Contacto</span>
+        <input type="number" [(ngModel)]="contacto" name="contacto" />
+      </div>
+    </form>
+    <div class="content_button">
+      <button (click)="registrar()">Crear Cuenta</button>
+    </div>
+  </div>
+
+  <div class="modal-overlay" *ngIf="response">
+    <div class="modal-container">
+      <p>{{ txt_response }}</p>
+    </div>
+  </div>
+</ion-content>

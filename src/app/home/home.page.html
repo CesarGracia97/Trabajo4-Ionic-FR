@@ -1,0 +1,53 @@
+<ion-content>
+    <div class="home_content">
+      <div class="content_imagen">
+        <img src="assets/man-user.svg" alt="Página de Contactos-Usuarios">
+      </div>
+  
+      <div class="body_content">
+        <span class="title">Tus Datos son los siguientes:</span>
+        <div class="table_container">
+          <table>
+            <tr>
+              <td><strong>Correo:</strong></td>
+              <td>{{ usuario?.correo }}</td>
+            </tr>
+            <tr>
+              <td><strong>Nombre:</strong></td>
+              <td>
+                <input *ngIf="editando" type="text" [(ngModel)]="nombre">
+                <span *ngIf="!editando">{{ usuario?.nombre }}</span>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Cédula:</strong></td>
+              <td>{{ usuario?.cedula }}</td>
+            </tr>
+            <tr>
+              <td><strong>Contacto:</strong></td>
+              <td>
+                <input *ngIf="editando" type="text" [(ngModel)]="contacto">
+                <span *ngIf="!editando">{{ usuario?.contacto }}</span>
+              </td>
+            </tr>
+          </table>
+        </div>
+  
+        <div class="button_container">
+          <ion-button *ngIf="!editando" (click)="habilitarEdicion()" class="btn_primary">Cambiar Datos</ion-button>
+          <ion-button (click)="IrContactos()" class="btn_primary">ir a Contactos</ion-button>
+          <div *ngIf="editando">
+            <ion-button (click)="guardarCambios()" class="btn_primary">Enviar Cambios</ion-button>
+            <ion-button (click)="cancelarEdicion()" class="btn_secondary">Deshacer</ion-button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-overlay" *ngIf="response">
+        <div class="modal-container">
+          <p>{{ txt_response }}</p>
+        </div>
+    </div>
+  </ion-content>
+  

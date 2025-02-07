@@ -6,4 +6,4 @@ export interface Contact {
     CORREO: string, 
     CEDULA: string, 
     ISVALID: string
-}
+}[]

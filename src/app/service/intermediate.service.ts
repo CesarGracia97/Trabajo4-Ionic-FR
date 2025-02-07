@@ -59,4 +59,8 @@ export class IntermediateService {
   mid_sendBloqueo_Usuario(CORREO: string){
     return this.req.bloqued_user(CORREO);
   }
+
+  mid_RecuperarContrasena(correo: string){
+    return this.req.recuperar_Clave(correo);
+  }
 }

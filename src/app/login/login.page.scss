@@ -58,6 +58,22 @@
         }
     }
 }
+ion-button { 
+    all: unset;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+ion-button {
+    --background: transparent;
+    --background-hover: transparent;
+    --background-activated: transparent;
+    --background-focused: transparent;
+    --color: inherit;
+    --box-shadow: none;
+    border: none;
+  }
+  
 
 .modal-overlay {
     position: fixed;
