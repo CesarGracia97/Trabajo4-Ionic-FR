@@ -14,8 +14,8 @@ import { Router } from '@angular/router';
 })
 export class HomePage implements OnInit {
 
-  usuario: { id: number,correo: string; nombre: string; cedula: number; contacto: number } | null = null;
-
+  usuario: { ID: number, CORREO: string, NOMBRE: string, CEDULA: number, CONTACTO: number } | null = null;
+  ID: number = 0;
   editando: boolean = false;
   loading: boolean | null = null; response: boolean | null = null; txt_response: string = '';
 
@@ -26,7 +26,19 @@ export class HomePage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.ds.dUsuario$.subscribe(data =>{ if(data)  this.usuario = data.usuario})
+    this.ds.dUsuario$.subscribe(data =>{ if(data)  this.usuario = data })
+    this.getID();
+    this.getData();
+  }
+
+  getID(){
+    if(this.usuario && this.usuario.ID){
+      const conver = this.usuario.ID
+      this.ID = conver;
+    }
+  }
+  getData(){
+    this.mid.mid_DataUsuarios(this.ID).subscribe()
   }
 
   habilitarEdicion() {
@@ -34,7 +46,7 @@ export class HomePage implements OnInit {
   }
 
   IrContactos(){
-    
+    this.mid.mid_ListaContactos(this.ID).subscribe();
     this.router.navigate(['/contact']);
   }
 
@@ -43,12 +55,11 @@ export class HomePage implements OnInit {
   }
 
   guardarCambios() {
-    if (this.usuario && this.usuario.id) { 
-      const id = this.usuario.id;
-      const id_conver = parseInt(id.toString(), 10); 
-      this.mid.mid_sendActualizar_Usuario(id_conver, this.nombre, this.contacto).subscribe({
+    if (this.usuario && this.ID) { 
+      this.mid.mid_ActualizarUsuario(this.ID, this.nombre, this.contacto).subscribe({
         next: () => {
           this.loading = false;
+          this.getData();
           this.showResponse('Actualizacion Exitosa');
         },
         error: (errorResponse: any) => {

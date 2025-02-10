@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonButton, IonItem } from '@ionic/angular/standalone';
 import { IntermediateService } from 'src/app/service/intermediate.service';
-import { User_Login } from 'src/app/interface/user';
+import { Login } from 'src/app/interface/interface';
 import { Router } from '@angular/router';
 
 @Component({
@@ -37,16 +37,25 @@ export class LoginPage {
     } 
   }
 
-  Login() {
+  Login(){
     if (!this.correo || !this.contrasena) {
       this.showResponse("Por favor completa los parámetros para iniciar sesión");
+      return;
+    }
+    
+    this.router.navigate(['/home']);
+  }
 
+  /*Login() {
+    if (!this.correo || !this.contrasena) {
+      this.showResponse("Por favor completa los parámetros para iniciar sesión");
       return;
     }
 
     this.loading = true;
-    this.mid.mid_getData_Usuario(this.correo, this.contrasena).subscribe({
-      next: (response: User_Login) => {
+    this.mid.mid_Login(this.correo, this.contrasena).subscribe({
+      next: (response: Login) => {
+        this.mid.mid_DataUsuarios(response.ID).subscribe();
         this.loading = false;
         this.showResponse(response.message);
         this.router.navigate(['/home']);
@@ -62,7 +71,7 @@ export class LoginPage {
         this.intentos=this.intentos++;
       },
     });
-  }
+  } */
 
   recuperarContrasena(){
     if(!this.correo){

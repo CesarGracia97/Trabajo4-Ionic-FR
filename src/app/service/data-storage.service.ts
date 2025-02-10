@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { User_Login, Users_List } from '../interface/user';
-import { Contact } from '../interface/contact';
+import { User, Users_List, Contact, Login } from '../interface/interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataStorageService {
 
-  private dUsuario_Subject = new BehaviorSubject<User_Login | null>(null);
+  private dUsuario_Subject = new BehaviorSubject<User | null>(null);
   dUsuario$ = this.dUsuario_Subject.asObservable();
+
+  private dLogin_Subject = new BehaviorSubject<Login | null>(null);
+  dLogin$ = this.dLogin_Subject.asObservable();
 
   private dLista_Usuarios_Subject = new BehaviorSubject<Users_List[] | null>(null);
   dLista_Usuario$ = this.dLista_Usuarios_Subject.asObservable();
@@ -20,18 +22,26 @@ export class DataStorageService {
   constructor() { }
 
   // Método para actualizar los datos
-  setUsuario(data: User_Login ): void {
+  setUsuario(data: User ): void {
     this.dUsuario_Subject.next(data);
   }
 
   // Método para obtener el valor actual almacenado
-  getUsuario(): User_Login | null {
+  getUsuario(): User | null {
     return this.dUsuario_Subject.getValue();
   }
 
   // Método para actualizar los datos
   setLista_Usuarios(data: Users_List []): void {
     this.dLista_Usuarios_Subject.next(data);
+  }
+
+  setLogin(data: Login): void {
+    this.dLogin_Subject.next(data);
+  }
+
+  getLogin(): Login | null {
+    return this.dLogin_Subject.getValue();
   }
 
   // Método para obtener el valor actual almacenado

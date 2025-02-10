@@ -10,24 +10,24 @@
           <table>
             <tr>
               <td><strong>Correo:</strong></td>
-              <td>{{ usuario?.correo }}</td>
+              <td>{{ usuario?.CORREO }}</td>
             </tr>
             <tr>
               <td><strong>Nombre:</strong></td>
               <td>
                 <input *ngIf="editando" type="text" [(ngModel)]="nombre">
-                <span *ngIf="!editando">{{ usuario?.nombre }}</span>
+                <span *ngIf="!editando">{{ usuario?.NOMBRE }}</span>
               </td>
             </tr>
             <tr>
               <td><strong>Cédula:</strong></td>
-              <td>{{ usuario?.cedula }}</td>
+              <td>{{ usuario?.CEDULA }}</td>
             </tr>
             <tr>
               <td><strong>Contacto:</strong></td>
               <td>
                 <input *ngIf="editando" type="text" [(ngModel)]="contacto">
-                <span *ngIf="!editando">{{ usuario?.contacto }}</span>
+                <span *ngIf="!editando">{{ usuario?.CONTACTO }}</span>
               </td>
             </tr>
           </table>

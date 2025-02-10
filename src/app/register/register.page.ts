@@ -31,7 +31,7 @@ export class RegisterPage implements OnInit {
       return;
     }
     this.loading = true;
-    this.mid.mid_sendData_RegistroUsuario(this.correo, this.contrasena, this.nombre, "'"+this.cedula, "'"+this.contacto).subscribe({
+    this.mid.mid_RegistroUsuario(this.correo, this.contrasena, this.nombre, "'"+this.cedula, "'"+this.contacto).subscribe({
       next: (response: any) => {
         this.loading = false;
         this.showResponse('Se ha Creado Exitosamente la cuenta');
