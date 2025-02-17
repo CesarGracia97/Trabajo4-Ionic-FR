@@ -47,6 +47,7 @@ export class HomePage implements OnInit {
 
   IrContactos(){
     this.mid.mid_ListaContactos(this.ID).subscribe();
+    this.mid.mid_ListaUsuarios().subscribe();
     this.router.navigate(['/contact']);
   }
 
@@ -55,8 +56,8 @@ export class HomePage implements OnInit {
   }
 
   guardarCambios() {
-    if (this.usuario && this.ID) { 
-      this.mid.mid_ActualizarUsuario(this.ID, this.nombre, this.contacto).subscribe({
+    if (this.usuario) { 
+      this.mid.mid_ActualizarUsuario(this.usuario.ID, this.nombre, this.contacto).subscribe({
         next: () => {
           this.loading = false;
           this.getData();

@@ -37,16 +37,16 @@ export class LoginPage {
     } 
   }
 
-  Login(){
+  /* Login(){
     if (!this.correo || !this.contrasena) {
       this.showResponse("Por favor completa los parámetros para iniciar sesión");
       return;
     }
     
     this.router.navigate(['/home']);
-  }
+  } */
 
-  /*Login() {
+  Login() {
     if (!this.correo || !this.contrasena) {
       this.showResponse("Por favor completa los parámetros para iniciar sesión");
       return;
@@ -63,7 +63,7 @@ export class LoginPage {
       error: (errorResponse: any) => {
         if(this.intentos >= 3){
           this.loading = false;
-          this.mid.mid_sendBloqueo_Usuario(this.correo);
+          this.mid.mid_BloqueoUsuario(this.correo);
           this.showResponse("numero de intentos "+this.intentos+". Tu cuenta fue bloqueada" );
         }
         this.loading = false;
@@ -71,7 +71,7 @@ export class LoginPage {
         this.intentos=this.intentos++;
       },
     });
-  } */
+  }
 
   recuperarContrasena(){
     if(!this.correo){

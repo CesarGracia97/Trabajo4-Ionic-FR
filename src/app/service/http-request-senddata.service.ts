@@ -30,8 +30,8 @@ export class HttpRequestSenddataService {
 
   register_contact(USUARIO_ID: number, NOMBRE: string, TELEFONO: string, CORREO: string, CEDULA: string): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const body = { USUARIO_ID, NOMBRE, TELEFONO, CORREO, CEDULA };
-    return this.http.post<any>('http://127.0.0.1:2014/rest/contactos-usuario-api/v1.0/post/create/usuarios', body, { headers });
+    const body = { USUARIO_ID, NOMBRE, TELEFONO, CORREO,CEDULA };
+    return this.http.post<any>('http://127.0.0.1:2014/rest/contactos-usuario-api/v1.0/post/create/contactos', body, { headers });
   }
 
   update_contact(ID: number, NOMBRE: string, TELEFONO: string, CORREO: string): Observable<any> {
@@ -43,6 +43,6 @@ export class HttpRequestSenddataService {
   bloqued_contact(ID: number, ISVALID: string): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const body = { ID, ISVALID };
-    return this.http.post<any>('http://127.0.0.1:2014/rest/contactos-usuario-api/v1.0/bloquear_contacto', body, { headers }); // <-- Se recomienda cambiar la URL
+    return this.http.post<any>('http://127.0.0.1:2014/rest/contactos-usuario-api/v1.0/bloquear_contacto', body, { headers }); 
   }
 }

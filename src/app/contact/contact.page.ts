@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonContent, IonButton, IonSelectOption, IonItem, IonLabel } from '@ionic/angular/standalone';
 import { DataStorageService } from '../service/data-storage.service';
 import { IntermediateService } from '../service/intermediate.service';
@@ -11,11 +11,11 @@ import { Router } from '@angular/router';
   templateUrl: './contact.page.html',
   styleUrls: ['./contact.page.scss'],
   standalone: true,
-  imports: [IonItem, IonContent, IonSelectOption, IonButton, CommonModule, FormsModule, IonLabel]
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, IonItem, IonContent, IonSelectOption, IonButton, IonLabel]
 })
 export class ContactPage implements OnInit {
   
-  contactos: { ID: number, USUARIO_ID: number, NOMBRE: number, TELEFONO: string, CORREO: string, CEDULA: string, ISVALID: string, editando: boolean }[] | null = null; //lista contactos
+  contactos: { ID: number,NOMBRE: number, TELEFONO: string, CORREO: string, CEDULA: string, ISVALID: string, editando: boolean }[] | null = null; //lista contactos
   usuarios: { ID: number, NOMBRE: string }[] = [] //lista de usuarios
   UserID: number = 0;
 
@@ -34,8 +34,8 @@ export class ContactPage implements OnInit {
 
   ngOnInit() {
     this.ds.dUsuario$.subscribe( data => { if(data) this.UserID = data.ID});
-    this.ds.dContactos$.subscribe( data => { if(data) this.contactos = data});
-    this.ds.dLista_Usuario$.subscribe( data => { if(data) this.usuarios = data})
+    this.ds.dContactos$.subscribe( data => { if(data) this.contactos = data.contactos});
+    this.ds.dLista_Usuario$.subscribe( data => { if(data) this.usuarios = data.usuarios})
     this.getData();
   }
 
@@ -82,7 +82,7 @@ export class ContactPage implements OnInit {
       return;
     }
   
-    this.mid.mid_ActualizarContacto(contacto.USUARIO_ID, contacto.NOMBRE, contacto.TELEFONO, contacto.CORREO).subscribe({
+    this.mid.mid_ActualizarContacto(contacto.ID, contacto.NOMBRE, contacto.TELEFONO, contacto.CORREO).subscribe({
       next: () => {
         contacto.editando = false;
         this.showResponse('Contacto actualizado');
@@ -94,11 +94,11 @@ export class ContactPage implements OnInit {
   }
 
   crearContacto(){
-    if (!this.crear_iduser || !this.crear_nombre || !this.crear_telefono || !this.crear_correo) {
+    if (!this.crear_nombre || !this.crear_telefono || !this.crear_correo) {
       alert("Todos los campos son obligatorios.");
       return;
     }
-    this.mid.mid_RegistroContacto(this.crear_iduser,this.crear_nombre,this.crear_telefono,this.crear_correo,this.crear_cedula).subscribe({
+    this.mid.mid_RegistroContacto(this.UserID,this.crear_nombre,this.crear_telefono,this.crear_correo,this.crear_cedula).subscribe({
       next: () => {
         this.loading = false;
         this.showResponse('Contacto Creado');

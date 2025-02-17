@@ -12,18 +12,19 @@ export class HttpRequestGetdataService {
 
   get_DataUsuarios(usuario_id: number): Observable<User>{
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const body = {ID: usuario_id}
-    return this.http.post<User>('http://127.0.0.1:2014/rest/contactos-usuario-api/v1.0/get/queries/listar_usuarios', body, { headers });
+    const body = {id: usuario_id}
+    return this.http.post<User>('http://127.0.0.1:2014/rest/contactos-usuario-api/v1.0/get/queries/usuario', body, { headers });
   }
 
-  get_ListaUsuarios(): Observable<Users_List[]> {
+  get_ListaUsuarios(): Observable<Users_List> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post<Users_List[]>('http://127.0.0.1:2014/rest/contactos-usuario-api/v1.0/get/queries/listar_usuarios', { headers });
+    const body = {peticion : 'y'}
+    return this.http.post<Users_List>('http://127.0.0.1:2014/rest/contactos-usuario-api/v1.0/get/queries/listar_usuarios', body, { headers });
   }
 
-  get_ListaContactoID(usuario_id: number): Observable<Contact[]> {
+  get_ListaContactoID(usuario_id: number): Observable<Contact> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const body = { usuario_id}
-    return this.http.post<Contact[]>('http://127.0.0.1:2014/rest/contactos-usuario-api/v1.0/get/queries/listar_contactos', body, { headers });
+    const body = { ID: usuario_id}
+    return this.http.post<Contact>('http://127.0.0.1:2014/rest/contactos-usuario-api/v1.0/get/queries/listar_contactos', body, { headers });
   }
 }

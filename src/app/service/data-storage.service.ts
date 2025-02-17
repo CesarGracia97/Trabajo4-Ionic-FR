@@ -13,10 +13,10 @@ export class DataStorageService {
   private dLogin_Subject = new BehaviorSubject<Login | null>(null);
   dLogin$ = this.dLogin_Subject.asObservable();
 
-  private dLista_Usuarios_Subject = new BehaviorSubject<Users_List[] | null>(null);
+  private dLista_Usuarios_Subject = new BehaviorSubject<Users_List | null>(null);
   dLista_Usuario$ = this.dLista_Usuarios_Subject.asObservable();
 
-  private dContactos_Subject = new BehaviorSubject<Contact[] | null> (null);
+  private dContactos_Subject = new BehaviorSubject<Contact | null> (null);
   dContactos$ = this.dContactos_Subject.asObservable();
 
   constructor() { }
@@ -32,7 +32,7 @@ export class DataStorageService {
   }
 
   // Método para actualizar los datos
-  setLista_Usuarios(data: Users_List []): void {
+  setLista_Usuarios(data: Users_List): void {
     this.dLista_Usuarios_Subject.next(data);
   }
 
@@ -45,17 +45,17 @@ export class DataStorageService {
   }
 
   // Método para obtener el valor actual almacenado
-  getLista_Usuario(): Users_List[] | null {
+  getLista_Usuario(): Users_List | null {
     return this.dLista_Usuarios_Subject.getValue();
   }
 
   // Método para actualizar los datos
-  setLista_Contactos(data: Contact[] ): void {
+  setLista_Contactos(data: Contact ): void {
     this.dContactos_Subject.next(data);
   }
 
   // Método para obtener el valor actual almacenado
-  getLista_Contactos(): Contact[] | null {
+  getLista_Contactos(): Contact | null {
     return this.dContactos_Subject.getValue();
   }
 }
